@@ -24,3 +24,21 @@ export function getDay(i) {
       return "Saturday";
   }
 }
+
+export function toMiles(i) {
+  return (i * 0.000621371).toFixed(2);
+}
+
+/**
+* Convert Celsius to Fahrenheit
+* @param {object} data - WeatherData -
+*/
+export function toFahrenheit(data) {
+
+  if (data.unit.toLowerCase() === "celsius") {
+    data.temperature = Math.round((data.temperature * 1.8) + 32);
+    data.unit = "Fahrenheit";
+  }
+
+  return data
+}

@@ -1,10 +1,62 @@
 <svg class="background">
-  <rect class="horiz" />
-  <rect class="horiz2" />
-  <rect class="verti" />
-  <text id="weekday" />
-  <text id="day" />
-  <text class="time" id="hours" />
-  <text class="time" id="colon">:</text>
-  <text class="time" id="minutes" />
+  <!-- <rect class="horiz" />
+  <rect class="verti" /> -->
+  <text class="day" id="weekday" />
+  <text class="day" id="day" />
+  <text id="time" />
+  <image class="goalIcon" id="heartIcon" href="activity/heart_rate_36px.png" />
+  <image class="goalIcon" id="distanceIcon" href="activity/distance_36px.png" />
+  <!-- <image class="goalIcon" id="stepsIcon" href="activity/steps_36px.png" /> -->
+  <image class="goalIcon" id="caloriesIcon" href="activity/calories_36px.png" />
+  <image class="goalIcon" id="floorsIcon" href="activity/floors_36px.png" />
+  <!-- <image class="goalIcon" id="azmIcon" href="activity/azm_36px.png" /> -->
+  <!-- <image class="goalIcon" id="batteryIcon" href="activity/azm_36px.png" /> -->
+  <text class="goals" id="heartrate" />
+  <text class="goals" id="distance" />
+  <!-- <text class="goals" id="steps" /> -->
+  <text class="goals" id="calories" />
+  <text class="goals" id="floors" />
+  <!-- <text class="goals" id="azm" /> -->
+  <text class="goals" id="battery" />
+  <image class="weatherIcon" id="weatherClearNight" href="weather/nt_clear.png" />
+  <image class="weatherIcon" id="weatherCloudy" href="weather/cloudy.png" />
+  <image class="weatherIcon" id="weatherFlurries" href="weather/flurries.png" />
+  <image class="weatherIcon" id="weatherFog" href="weather/fog.png" />
+  <image class="weatherIcon" id="weatherFreezingRain" href="weather/sleet.png" />
+  <image class="weatherIcon" id="weatherHazyMoonlight" href="weather/fog.png" />
+  <image class="weatherIcon" id="weatherHazySunshineDay" href="weather/fog.png" />
+  <image class="weatherIcon" id="weatherIntermittentCloudsDay" href="weather/partlycloudy.png" />
+  <image class="weatherIcon" id="weatherIntermittentCloudsNight" href="weather/nt_partlycloudy.png" />
+  <image class="weatherIcon" id="weatherMostlyClearNight" href="weather/nt_mostlysunny.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyDay" href="weather/mostlycloudy.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyNight" href="weather/nt_mostlycloudy.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithFlurriesDay" href="weather/flurries.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithFlurriesNight" href="weather/flurries.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithShowersDay" href="weather/rain.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithShowersNight" href="weather/rain.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithSnowDay" href="weather/snow.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithSnowNight" href="weather/snow.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithThunderstormsDay" href="weather/tstorms.png" />
+  <image class="weatherIcon" id="weatherMostlyCloudyWithThunderstormsNight" href="weather/tstorms.png" />
+  <image class="weatherIcon" id="weatherMostlySunnyDay" href="weather/mostlysunny.png" />
+  <image class="weatherIcon" id="weatherOvercast" href="weather/cloudy.png" />
+  <image class="weatherIcon" id="weatherPartlyCloudyNight" href="weather/nt_partlycloudy.png" />
+  <image class="weatherIcon" id="weatherPartlyCloudyWithShowersNight" href="weather/rain.png" />
+  <image class="weatherIcon" id="weatherPartlyCloudyWithThunderstormsNight" href="weather/tstorms.png" />
+  <image class="weatherIcon" id="weatherPartlySunnyDay" href="weather/partlysunny.png" />
+  <image class="weatherIcon" id="weatherPartlySunnyWithFlurriesDay" href="weather/flurries.png" />
+  <image class="weatherIcon" id="weatherPartlySunnyWithShowersDay" href="weather/rain.png" />
+  <image class="weatherIcon" id="weatherPartlySunnyWithThunderstormsDay" href="weather/tstorms.png" />
+  <image class="weatherIcon" id="weatherRain" href="weather/rain.png" />
+  <image class="weatherIcon" id="weatherRainAndSnow" href="weather/sleet.png" />
+  <image class="weatherIcon" id="weatherShowers" href="weather/rain.png" />
+  <image class="weatherIcon" id="weatherSleet" href="weather/sleet.png" />
+  <image class="weatherIcon" id="weatherSnow" href="weather/snow.png" />
+  <image class="weatherIcon" id="weatherSunnyDay" href="weather/clear.png" />
+  <image class="weatherIcon" id="weatherThunderstorms" href="weather/tstorms.png" />
+  <image class="weatherIcon" id="weatherWindy" href="weather/fog.png" />
+  <image class="weatherIcon" id="weatherCold" href="weather/snow.png" />
+  <image class="weatherIcon" id="weatherHot" href="weather/clear.png" />
+  <image class="weatherIcon" id="weatherIce" href="weather/snow.png" />
+  <text class="goals" id="weather" />
 </svg>
