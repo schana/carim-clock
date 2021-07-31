@@ -1,0 +1,10 @@
+<svg class="background">
+  <rect class="horiz" />
+  <rect class="horiz2" />
+  <rect class="verti" />
+  <text id="weekday" />
+  <text id="day" />
+  <text class="time" id="hours" />
+  <text class="time" id="colon">:</text>
+  <text class="time" id="minutes" />
+</svg>
