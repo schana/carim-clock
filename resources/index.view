@@ -6,17 +6,23 @@
   <text id="time" />
   <image class="goalIcon" id="heartIcon" href="activity/heart_rate_36px.png" />
   <image class="goalIcon" id="distanceIcon" href="activity/distance_36px.png" />
-  <!-- <image class="goalIcon" id="stepsIcon" href="activity/steps_36px.png" /> -->
+  <image class="goalIcon" id="stepsIcon" href="activity/steps_36px.png" />
   <image class="goalIcon" id="caloriesIcon" href="activity/calories_36px.png" />
   <image class="goalIcon" id="floorsIcon" href="activity/floors_36px.png" />
-  <!-- <image class="goalIcon" id="azmIcon" href="activity/azm_36px.png" /> -->
-  <!-- <image class="goalIcon" id="batteryIcon" href="activity/azm_36px.png" /> -->
+  <image class="goalIcon" id="azmIcon" href="activity/azm_36px.png" />
+  <image id="batteryIcon" href="battery.png" />
+  <mask id="batteryMask">
+    <rect id="batteryMaskRect" />
+  </mask>
+  <svg mask="#batteryMask" width="100%" height="100%">
+    <image id="batteryIconFill" href="battery.png" />
+  </svg>
   <text class="goals" id="heartrate" />
   <text class="goals" id="distance" />
-  <!-- <text class="goals" id="steps" /> -->
+  <text class="goals" id="steps" />
   <text class="goals" id="calories" />
   <text class="goals" id="floors" />
-  <!-- <text class="goals" id="azm" /> -->
+  <text class="goals" id="azm" />
   <text class="goals" id="battery" />
   <image class="weatherIcon" id="weatherClearNight" href="weather/nt_clear.png" />
   <image class="weatherIcon" id="weatherCloudy" href="weather/cloudy.png" />

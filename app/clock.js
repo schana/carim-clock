@@ -13,7 +13,7 @@ let handleCallback;
 const heartrateLabel = document.getElementById("heartrate");
 
 export function initialize(granularity, callback) {
-    clock.granularity = granularity ? granularity : "minutes";
+    clock.granularity = granularity ? granularity : "seconds";
     handleCallback = callback;
     clock.addEventListener("tick", tick);
 }
@@ -34,11 +34,12 @@ export function tick(evt) {
     const day = util.zeroPad(date.getDate());
     const weekday = util.getDay(date.getDay());
 
-    const distance = util.toMiles(today.adjusted.distance);
-    const steps = today.adjusted.steps;
-    const floors = today.adjusted.elevationGain;
-    const azm = today.adjusted.activeZoneMinutes;
-    const calories = today.adjusted.calories;
+    var activity = today['adjusted'];
+    const distance = util.toMiles(activity.distance);
+    const steps = activity.steps;
+    const floors = activity.elevationGain;
+    const azm = activity.activeZoneMinutes.total;
+    const calories = activity.calories;
 
     if (appbit.permissions.granted("access_heart_rate") && HeartRateSensor) {
         const hrm = new HeartRateSensor({ frequency: 1 });
@@ -65,10 +66,11 @@ export function tick(evt) {
             day: `${year}-${month}-${day}`,
             weekday: weekday,
             distance: distance,
-            step: steps,
+            steps: steps,
             floors: floors,
             azm: azm,
             calories: calories,
+            rawChargeLevel: battery.chargeLevel,
             chargeLevel: chargeLevel,
         });
     }
