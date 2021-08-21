@@ -28,7 +28,9 @@ newfile.initialize(data => {
         icon.style.display = "none";
     }
     const weatherIcon = document.getElementById(`weather${data.condition}`);
-    weatherIcon.style.display = "inline";
+    if (weatherIcon) {
+        weatherIcon.style.display = "inline";
+    }
     weatherLabel.text = `${data.temperature}\u00B0`;
     clock.tick();
 });

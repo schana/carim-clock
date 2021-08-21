@@ -1,10 +1,10 @@
 {
   "name": "carim_clock",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "UNLICENSED",
   "devDependencies": {
-    "@fitbit/sdk": "~6.0.0",
+    "@fitbit/sdk": "~6.0.1",
     "@fitbit/sdk-cli": "^1.7.3"
   },
   "fitbit": {

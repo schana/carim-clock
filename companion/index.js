@@ -1,7 +1,7 @@
 import * as cbor from "cbor";
 import { me as companion } from "companion";
 import { outbox } from "file-transfer";
-import weather from "weather";
+import { weather, WeatherCondition } from "weather";
 import { dataFile, wakeTime } from "../common/constants";
 
 function refreshData() {
@@ -11,7 +11,7 @@ function refreshData() {
       if (data.locations.length > 0) {
         sendData({
           temperature: Math.floor(data.locations[0].currentWeather.temperature),
-          condition: data.locations[0].currentWeather.weatherCondition,
+          condition: mapCondition(data.locations[0].currentWeather.weatherCondition),
           location: data.locations[0].name,
           unit: data.temperatureUnit
         });
@@ -22,6 +22,13 @@ function refreshData() {
     .catch((ex) => {
       console.error(ex);
     });
+}
+
+function mapCondition(weatherConditionValue) {
+  if (typeof weatherConditionValue === 'string') return weatherConditionValue;
+  for (const weatherCondition of Object.keys(WeatherCondition)) {
+    if (WeatherCondition[weatherCondition] === weatherConditionValue) return weatherCondition;
+  }
 }
 
 function sendData(data) {
