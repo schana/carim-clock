@@ -1,5 +1,21 @@
 .background {}
 
+.nightHide {
+  display: inherit;
+}
+
+.nightHideApplied {
+  display: none;
+}
+
+.nightText {
+  fill: white;
+}
+
+.nightTextApplied {
+  fill: fb-red;
+}
+
 #time {
   font-size: 80;
   font-family: System-Light;
@@ -7,7 +23,6 @@
   y: 50%+27;
   x: 50%;
   text-anchor: middle;
-  fill: white;
 }
 
 .day {
@@ -32,7 +47,6 @@
   y: 2;
   width: 32;
   height: 32;
-  fill: fb-green;
 }
 
 #batteryMaskRect {
@@ -47,14 +61,16 @@
   y: 2;
   width: 32;
   height: 32;
-  fill: white;
+  fill: fb-light-gray;
 }
 
 #battery {
   text-anchor: start;
   x: 50%+36;
   y: 24;
-  fill: white;
+  font-size: 20;
+  font-family: System-Regular;
+  text-length: 8;
 }
 
 .weatherIcon {
@@ -69,6 +85,9 @@
   x: 50%-36;
   y: 24;
   text-anchor: end;
+  font-size: 20;
+  font-family: System-Regular;
+  text-length: 8;
 }
 
 .goalIcon {

@@ -44,10 +44,38 @@ clock.initialize("seconds", data => {
     batteryLabel.text = data.chargeLevel;
     const height = (1 - data.rawChargeLevel / 100) * 30;
     batteryMask.height = Math.min(25, Math.floor(height));
+    const batteryIcon = document.getElementById('batteryIcon');
+    if (data.rawChargeLevel > 40) {
+        batteryIcon.style.fill = 'fb-green';
+    } else if (data.rawChargeLevel > 10) {
+        batteryIcon.style.fill = 'fb-yellow';
+    } else {
+        batteryIcon.style.fill = 'fb-red';
+    }
 
     distanceLabel.text = data.distance ? data.distance : "0";
     stepsLabel.text = data.steps ? data.steps : "0";
     floorsLabel.text = data.floors ? data.floors : "0";
     azmLabel.text = data.azm ? data.azm : "0";
     caloriesLabel.text = data.calories ? data.calories : "0";
+
+    if (data.night) {
+        var elements = document.getElementsByClassName('nightHide');
+        for (const e of elements) {
+            e.class = e.class.replace('nightHide', 'nightHideApplied');
+        }
+        var elements = document.getElementsByClassName('nightText');
+        for (const e of elements) {
+            e.class = e.class.replace('nightText', 'nightTextApplied');
+        }
+    } else {
+        var elements = document.getElementsByClassName('nightHideApplied');
+        for (const e of elements) {
+            e.class = e.class.replace('nightHideApplied', 'nightHide');
+        }
+        var elements = document.getElementsByClassName('nightTextApplied');
+        for (const e of elements) {
+            e.class = e.class.replace('nightTextApplied', 'nightText');
+        }
+    }
 });

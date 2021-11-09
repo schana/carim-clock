@@ -3,19 +3,31 @@ import { preferences } from "user-settings";
 import * as util from "../common/utils";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
-import { today, primaryGoal } from "user-activity";
+import { today } from "user-activity";
 import { battery } from "power";
 import { me as appbit } from "appbit";
+import { geolocation } from "geolocation";
 import document from "document";
 
 let handleCallback;
 
 const heartrateLabel = document.getElementById("heartrate");
+var nightStart = 20;
+var nightEnd = 6;
 
 export function initialize(granularity, callback) {
     clock.granularity = granularity ? granularity : "seconds";
     handleCallback = callback;
     clock.addEventListener("tick", tick);
+}
+
+function locationSuccess(position) {
+
+}
+
+function locationError(error) {
+    nightStart = 24;
+    nightEnd = 0;
 }
 
 export function tick(evt) {
@@ -33,6 +45,13 @@ export function tick(evt) {
     const month = util.zeroPad(date.getMonth() + 1);
     const day = util.zeroPad(date.getDate());
     const weekday = util.getDay(date.getDay());
+
+    if (mins == '00') {
+        geolocation.getCurrentPosition(locationSuccess, locationError, {
+            maximumAge: Infinity,
+            timeout: 1000,
+        });
+    }
 
     var activity = today['adjusted'];
     const distance = util.toMiles(activity.distance);
@@ -72,6 +91,7 @@ export function tick(evt) {
             calories: calories,
             rawChargeLevel: battery.chargeLevel,
             chargeLevel: chargeLevel,
+            night: date.getHours() >= nightStart || date.getHours() <= nightEnd,
         });
     }
 }
