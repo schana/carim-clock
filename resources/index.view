@@ -1,8 +1,9 @@
 <svg class="background">
   <!-- <rect class="horiz" />
   <rect class="verti" /> -->
-  <text class="day nightHide" id="weekday" />
-  <text class="day nightHide" id="day" />
+  <text class="nightText" id="debug" />
+  <text class="day nightText" id="weekday" />
+  <text class="day nightText" id="day" />
   <text class="nightText" id="time" />
   <image class="goalIcon nightHide" id="heartIcon" href="activity/heart_rate_36px.png" />
   <image class="goalIcon nightHide" id="distanceIcon" href="activity/distance_36px.png" />

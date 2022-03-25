@@ -28,6 +28,7 @@ const caloriesLabel = document.getElementById("calories");
 const batteryLabel = document.getElementById("battery");
 const batteryMask = document.getElementById("batteryMaskRect");
 export const weatherLabel = document.getElementById("weather");
+export const debugLabel = document.getElementById("debug");
 
 export function initialize() {
     clock.granularity = "seconds";

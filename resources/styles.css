@@ -1,5 +1,14 @@
 .background {}
 
+#debug {
+  font-size: 20;
+  font-family: System-Regular;
+  text-length: 20;
+  text-anchor: middle;
+  x: 50%;
+  y: 25%-27;
+}
+
 .nightHide {
   display: inherit;
 }
@@ -31,7 +40,6 @@
   text-length: 10;
   text-anchor: middle;
   x: 50%;
-  fill: white;
 }
 
 #day {

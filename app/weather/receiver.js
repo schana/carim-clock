@@ -19,5 +19,10 @@ export function callback(data) {
         weatherIcon.style.display = "inline";
     }
     clock_manager.weatherLabel.text = `${data.temperature}\u00B0`;
+
+    const date = new Date();
+
+    clock_manager.debugLabel.text = `${data.timestamp} ${data.postcode} ${data.uv[`${date.getDate()}/${date.getHours()}`]}`;
+
     clock_manager.tick();
 }
