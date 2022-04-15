@@ -6,10 +6,10 @@ import { display } from "display";
 import { today } from "user-activity";
 import { battery } from "power";
 import { me as appbit } from "appbit";
-import { geolocation } from "geolocation";
 import document from "document";
 import * as device_settings from "../settings/device";
 import { KEY_SECONDS } from "../../common/constants";
+import { getWeatherDataForFace } from "../weather/receiver";
 
 const heartrateLabel = document.getElementById("heartrate");
 export var nightStart = 20;
@@ -27,26 +27,18 @@ const azmLabel = document.getElementById("azm");
 const caloriesLabel = document.getElementById("calories");
 const batteryLabel = document.getElementById("battery");
 const batteryMask = document.getElementById("batteryMaskRect");
-export const weatherLabel = document.getElementById("weather");
-export const debugLabel = document.getElementById("debug");
+const weatherLabel = document.getElementById("weather");
+const debugLabel = document.getElementById("debug");
 
 export function initialize() {
     clock.granularity = "seconds";
     clock.addEventListener("tick", tick);
 }
 
-function locationSuccess(position) {
-
-}
-
-function locationError(error) {
-    nightStart = 24;
-    nightEnd = 0;
-}
-
 export function tick(evt) {
     doHeartRateSensor();
     updateClockFace(buildData(evt));
+    updateWeather(getWeatherDataForFace(evt));
 }
 
 function doHeartRateSensor() {
@@ -87,13 +79,6 @@ function buildData(evt) {
     const month = util.zeroPad(date.getMonth() + 1);
     const day = util.zeroPad(date.getDate());
     const weekday = util.getDay(date.getDay());
-
-    if (mins == '00') {
-        geolocation.getCurrentPosition(locationSuccess, locationError, {
-            maximumAge: Infinity,
-            timeout: 1000,
-        });
-    }
 
     var activity = today['adjusted'];
     const distance = util.toMiles(activity.distance);
@@ -161,4 +146,21 @@ function updateClockFace(data) {
             e.class = e.class.replace('nightTextApplied', 'nightText');
         }
     }
+}
+
+function updateWeather(data) {
+    if (!data.success) {
+        return;
+    }
+    let icons = document.getElementsByClassName("weatherIcon");
+    for (const icon of icons) {
+        icon.style.display = "none";
+    }
+    const weatherIcon = document.getElementById(data.icon);
+    if (weatherIcon) {
+        weatherIcon.style.display = "inline";
+    }
+
+    weatherLabel.text = data.temp;
+    debugLabel.text = data.debug;
 }

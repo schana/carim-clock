@@ -1,7 +1,7 @@
 import { me as companion } from "companion";
 import { geolocation } from "geolocation";
 import { weather, WeatherCondition } from "weather";
-import { WEATHER_FILE, WAKE_TIME } from "../../common/constants";
+import { WEATHER_FILE, WAKE_TIME, MILLISECONDS_PER_MINUTE, STATES } from "../../common/constants";
 import * as sender from "../messaging/sender";
 import * as util from "../../common/utils";
 
@@ -19,11 +19,11 @@ export function initialize() {
 }
 
 function refreshData() {
-    Promise.all([weather.getWeatherData(), getCurrentPosition({ maximumAge: Infinity })])
+    Promise.all([weather.getWeatherData(), getCurrentPosition({ maximumAge: 30 * MILLISECONDS_PER_MINUTE })])
         .then(([data, position]) => {
             const date = new Date();
             let sendingData = {
-                timestamp: `${util.zeroPad(date.getHours())}:${util.zeroPad(date.getMinutes())}:${util.zeroPad(date.getSeconds())}`,
+                timestamp: `${util.zeroPad(date.getHours())}:${util.zeroPad(date.getMinutes())}`,
                 weatherTimestamp: -1,
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude,
@@ -40,12 +40,15 @@ function refreshData() {
 
             return sendingData;
         }).then(data => {
-            return Promise.all([data, getZipCode(data)]);
+            return Promise.all([data, getCityState(data)]);
         }).then(([data, response]) => {
-            data.postcode = response.address.postcode;
+            // console.log(JSON.stringify(response));
+            data.city = response.address.city;
+            data.state = STATES[response.address.state];
             // console.log(JSON.stringify(data));
             return Promise.all([data, getUVHourly(data)]);
         }).then(([data, response]) => {
+            // console.log(JSON.stringify(response));
             let values = {};
             for (const entry of response) {
                 // MAR/22/2022 07 AM
@@ -72,13 +75,17 @@ function getCurrentPosition(options) {
     return new Promise((resolve, reject) => geolocation.getCurrentPosition(resolve, reject, options));
 }
 
-function getZipCode(data) {
-    return fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&addressdetails=1`)
+function getCityState(data) {
+    return fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}`)
         .then(response => response.json());
 }
 
 function getUVHourly(data) {
-    return fetch(`https://enviro.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/${data.postcode}/JSON`)
+    var city = data.location;
+    if (data.city !== undefined) {
+        city = data.city;
+    }
+    return fetch(`https://enviro.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/CITY/${city}/STATE/${data.state}/JSON`)
         .then(response => response.json());
 }
 

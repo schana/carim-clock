@@ -1,9 +1,9 @@
 import { inbox } from "file-transfer";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import * as device_settings from "../settings/device";
 import * as weather_reciever from "../weather/receiver";
 
-import { WEATHER_FILE, SETTINGS_FILE, DATA_TYPE } from "../../common/constants";
+import { WEATHER_FILE, WEATHER_CACHED_FILE, SETTINGS_FILE, DATA_TYPE } from "../../common/constants";
 
 export function initialize() {
     inbox.addEventListener("newfile", fileHandler);
@@ -19,11 +19,13 @@ function fileHandler() {
         }
         let data = loadData(fileName);
         if (data !== undefined) {
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             if (fileName === SETTINGS_FILE) {
                 device_settings.callback(data);
             } else if (fileName === WEATHER_FILE) {
-                weather_reciever.callback(data);
+                if (weather_reciever.validate(data)) {
+                    writeFileSync(WEATHER_CACHED_FILE, data, DATA_TYPE);
+                }
             }
         }
     } while (fileName);
